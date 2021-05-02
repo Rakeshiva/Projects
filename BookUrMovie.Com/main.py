@@ -20,6 +20,8 @@ class Movie:
         self.column=[]                              #adding selected columns in this list when we book the ticket.
         self.Booked = 0                             #no.of tickets booked.
         self.Current_income =0                      #cummulative of current income.
+        self.Booked_details = [[None for j in range(self.seats)] for i in range(self.rows)] #store details of user
+        
     def Main_menu(self):
         while True:
             print('\n'"======Select from the following options:========="'\n'
@@ -59,7 +61,7 @@ class Movie:
                 else:
                     print('S',end='  ')
             print('\n',end='')
- 
+
     def Buy_a_ticket(self):
         x.Show_the_seats()
         print("=======You can select the Vacant seats",'S:Vacant Seats','B:Reserved Seat==========')
@@ -76,9 +78,8 @@ class Movie:
         row=int(row)
         column=int(column)
         User_detail = {}                                                  #Here we can store the User details
-        self.Booked_details = [[None for j in range(column)] for i in range(row)]
         if (row,column) not in list(zip(self.row,self.column)):               #Check wheter seat is vacant or not
-            if self.rows*self.seats < 60:
+            if self.rows*self.seats <= 60:
                 price_of_ticket = 10
             elif row <= int(self.rows//2):
                 price_of_ticket = 10
@@ -152,9 +153,9 @@ class Movie:
         booked_column= int(input('Enter Column number - \n'))
         if booked_row in range(1, self.rows+1) and booked_column in range(1, self.seats+1):
             if (booked_row,booked_column) in list(zip(self.row,self.column)):
-                User = self.Booked_details[ booked_row  - 1][ booked_column - 1]
+                User = self.Booked_details[ booked_row  - 1][ booked_column - 1] 
                 print("============================================")
-                print("         User info:")
+                print("         User info:")  
                 print('=============================================')
                 print('Name:',User['Name'].capitalize())
                 print('Gender:',User['Gender'])
