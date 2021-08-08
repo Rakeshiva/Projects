@@ -22,7 +22,7 @@ x_train = sc_x.fit_transform(x_train)
 x_test = sc_x.transform(x_test)
 
 from sklearn.neighbors import KNeighborsRegressor
-knn =KNeighborsRegressor(n_neighbors=3)
+knn =KNeighborsRegressor(n_neighbors=15)
 knn.fit(x_train, y_train)
 
 print(knn.score(x_test, y_test))
